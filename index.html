@@ -67,33 +67,156 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
         }
+		      /* Footer */
+        footer {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+		
+		/* Thank You Message */
+        .thank-you-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #ff6600;
+            text-decoration: none;
+        }
     </style>
+	    <script>
+        function updatePayment() {
+            // Get the number of attendees
+            let attendees = document.getElementById('attendees').value;
+            if (!attendees || attendees < 1) {
+                attendees = 1; // Default to 1 if no valid number is entered
+            }
+            
+            // Calculate total amount (₹2499 per attendee)
+            let amount = attendees * 2499;
+            
+            // Update UPI payment link with the correct amount
+            let upiLink = document.getElementById('upi-link');
+            upiLink.href = `upi://pay?pa=visualsofsai@okhdfcbank&pn=SolarObservatory&cu=INR`;
+            
+            // Display total amount
+            document.getElementById('total-amount').innerText = `Total Amount: ₹${amount}`;
+        }
+
+        // Form submission handler
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.querySelector(".registration-form form");
+            const thankYouMessage = document.getElementById("thank-you-message");
+
+            form.addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent page reload
+
+                // Process form data here (e.g., send it to the server)
+                // For now, just show the thank you message
+                thankYouMessage.style.display = "block";
+
+                // Optionally clear the form
+                form.reset();
+                updatePayment(); // Reset the total amount display
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="container">
         <div class="logo">
             <img src="logo.png" alt="Event Logo"> <!-- Replace with your logo -->
         </div>
+		    <!-- Event Banner -->
+    <section class="event-banner">
+    
+        <h2><span style="color: #ff6600;">Join us on December 28th at Yelagiri for an unforgettable Solar & StarGazing event.</span></h2>
+        <h2><span style="color: #ff6600;">✨ Immerse yourself in the celestial wonders! Join us at Yelagiri for an unforgettable Solar & NightSky Event, where the universe comes alive with breathtaking views of the Sun,Planets and starlit heavens. 🌌☀️</span></h2>
+
+        <h3><u>Inclusions:</u></h3>
+        <p>Sun Observation, Planets, Galaxies, Star Clusters & Nebulae </p>
+
+        <p><u>Package Details:</u></p>
+        <p>Per Person : ₹2499/-</p>
+
+        <p><u>Disclaimer:</u></p>
+        <p>The occurrence of the event relies on weather conditions.</p>
+       
+        <p>Date: <span style="color: #ff6600;">28th December 2024, 02:00 PM</span></p>
+		
         <h1>Stargazing Event Registration</h1>
-        <form action="submit-form.php" method="POST"> <!-- Replace action with your backend -->
-            <div class="form-group">
-                <label>Select a Date:</label>
-                <label><input type="radio" name="date" value="2024-12-15" required> December 15, 2024</label>
-                <label><input type="radio" name="date" value="2024-12-22"> December 22, 2024</label>
-                <label><input type="radio" name="date" value="2025-01-05"> January 5, 2025</label>
-            </div>
-            <div class="form-group">
-                <label for="name">Your Name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-            </div>
-            <div class="form-group">
-                <button type="submit">Register Now</button>
-            </div>
+        <form action="https://sheetdb.io/api/v1/c4jeiz75goxnc" method="POST" id="sheetdb-form">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+			
+	<label>Select Event Date:</label>
+            <div class="radio-group">
+              <label>
+                    <input type="radio" name="event_date" value="28th December 2024" required>28th December 2024</label>
+               
+	
+            <label for="attendees">Number of Attendees</label>
+            <input type="tel" id="attendees" name="attendees" min="1" required oninput="updatePayment()">
+		
+		<button type="button" id="calculate-button">Calculate Amount</button>
+
+    <div class="payment-link" id="payment-section" style="display: none;">
+        <p id="amount" style="text-align: left;">Amount to Pay: </p>
+        <a id="upi-link" href="" target="_blank">
+            <button type="button">Pay via UPI</button>
+        </a>
+    </div>
+	
+
+<script>
+    let totalRegistered = 0;
+
+    document.getElementById('calculate-button').addEventListener('click', () => {
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const attendees = parseInt(document.getElementById('attendees').value);
+
+        if (name && phone && attendees > 0) {
+            const amount = attendees * 2499;
+            document.getElementById('amount').textContent = `Amount to Pay: ₹${amount}`;
+
+            const upiLink = `upi://pay?pa=visualsofsai@okhdfcbank&pn=SolarObservatory&cu=INR&am=${amount}`;
+            document.getElementById('upi-link').href = upiLink;
+
+            document.getElementById('payment-section').style.display = 'block';
+
+            totalRegistered += attendees;
+            document.getElementById('registered-count').textContent = `Total Registered: ${totalRegistered}`;
+        } else {
+            alert('Please fill in all fields correctly.');
+        }
+			function handlePayment() {
+            const now = new Date();
+            paymentTime = now.toLocaleString();
+            alert(`Payment initiated at ${paymentTime}. You will be redirected.`);
+            setTimeout(() => {
+                window.location.href = "https://dustlit.github.io/02-Solar-Observation/"; // Replace with your success page URL
+            }, 3000); // Simulate redirection delay
+        }
+    });	
+	</script>
+	
+		<!-- Click Submit To Complete Registration -->
+		<p style="text-align: left;"> Click Submit To Complete Registration Process<p>
+            <button type="submit">Submit</button>
         </form>
+		
+    </section>
         <div class="itinerary">
             <h2>Event Itinerary</h2>
             <img src="itinerary1.jpg" alt="Itinerary Page 1"> <!-- Replace with actual file paths -->
@@ -101,5 +224,64 @@
             <img src="itinerary3.jpg" alt="Itinerary Page 3"> <!-- Replace with actual file paths -->
         </div>
     </div>
+	<!-- Thank You Message -->
+    <div id="thank-you-message" class="thank-you-message">
+        <h3>Thank You for Registering!</h3>
+        <p>Your registration has been successfully received.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>For more details, contact us at: <a href="https://wa.me/9585866980?text=I'm%20Enquiring%20about%20the%20Solar%20Observation%20Event">+91 95858 66980</a> | <a href="https://wa.me/7416930597?text=I'm%20Enquiring%20about%20the%20Solar%20Observation%20Event">+91 74169 30597</a> | Email ID: <a href="https://mail.google.com/mail/u/5/#inbox?compose=DmwnWrRmVXFRCXXkKpmdPDLvJmBQsDKqPmsTnqJNcPqxJqRGGbWZmpjsRJzNZqrxjqjbchRhVGgL">dustlitastronomy@gmail.com</a></p>
+        <p>Follow us on <a href="https://www.instagram.com/dustlit?igsh=MTF4ajk0am8yam95Yg==">Instagram</a> </p>
+    </footer>
+	
+	<script>
+            var form = document.getElementById('sheetdb-form');
+        
+    form.addEventListener("submit", e => {
+    e.preventDefault();
+
+    // Get the current time in IST
+    const now = new Date();
+    const utcOffset = now.getTime() + (now.getTimezoneOffset() * 60000);
+    const istTime = new Date(utcOffset + (5.5 * 60 * 60 * 1000)); // IST is UTC+5:30
+
+    // Format IST time into a readable format
+    const istFormatted = istTime.toLocaleString("en-IN", {
+        timeZone: "Asia/Kolkata",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    });
+
+    const formData = new FormData(form);
+    formData.append("submission_date", istFormatted); // Add formatted IST time
+
+    console.log("Submission Date (IST):", istFormatted); // Debugging log
+
+    fetch(form.action, {
+        method: "POST",
+        body: formData,
+    })
+    .then(response => response.json())
+    .then((result) => {
+        console.log("Form submitted successfully:", result);
+
+        const thankYouMessage = document.getElementById("thank-you-message");
+        thankYouMessage.style.display = "block";
+
+        form.reset();
+        updatePayment();
+    })
+ 
+});
+
+</script>
+
+	
 </body>
 </html>
