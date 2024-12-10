@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stargazing Event Registration</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('stargazing-background.jpg'); /* Replace with actual image */
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .logo img {
+            max-width: 150px;
+            margin: 0 auto 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input[type="radio"] {
+            margin-right: 10px;
+        }
+        .form-group input,
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .form-group button {
+            background-color: #ff5722;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #e64a19;
+        }
+        .itinerary {
+            margin-top: 20px;
+        }
+        .itinerary img {
+            width: 100%;
+            max-width: 550px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="logo.png" alt="Event Logo"> <!-- Replace with your logo -->
+        </div>
+        <h1>Stargazing Event Registration</h1>
+        <form action="submit-form.php" method="POST"> <!-- Replace action with your backend -->
+            <div class="form-group">
+                <label>Select a Date:</label>
+                <label><input type="radio" name="date" value="2024-12-15" required> December 15, 2024</label>
+                <label><input type="radio" name="date" value="2024-12-22"> December 22, 2024</label>
+                <label><input type="radio" name="date" value="2025-01-05"> January 5, 2025</label>
+            </div>
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Register Now</button>
+            </div>
+        </form>
+        <div class="itinerary">
+            <h2>Event Itinerary</h2>
+            <img src="itinerary1.jpg" alt="Itinerary Page 1"> <!-- Replace with actual file paths -->
+            <img src="itinerary2.jpg" alt="Itinerary Page 2"> <!-- Replace with actual file paths -->
+            <img src="itinerary3.jpg" alt="Itinerary Page 3"> <!-- Replace with actual file paths -->
+        </div>
+    </div>
+</body>
+</html>
