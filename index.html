@@ -30,24 +30,21 @@
             margin-bottom: 20px;
         }
         .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input[type="radio"] {
-            margin-right: 10px;
-        }
-        .form-group input,
-        .form-group button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 5px;
-        }
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    .form-group label {
+        width: 30%; /* Adjust width as needed */
+        text-align: left;
+        margin-right: 10px;
+    }
+    .form-group input {
+        flex: 1; /* Take the remaining space */
+        padding: 8px;
+        border: none;
+        border-radius: 5px;
+    }
         .form-group button {
             background-color: #ff5722;
             color: white;
@@ -151,31 +148,43 @@
        
         <p>Date: <span style="color: #ff6600;">28th December 2024, 02:00 PM</span></p>
 		
-        <h1>Stargazing Event Registration</h1>
-        <form action="https://sheetdb.io/api/v1/c4jeiz75goxnc" method="POST" id="sheetdb-form">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" required>
-			
-	<label>Select Event Date:</label>
-            <div class="radio-group">
-              <label>
-                    <input type="radio" name="event_date" value="28th December 2024" required>28th December 2024</label>
-               
-	
-            <label for="attendees">Number of Attendees</label>
-            <input type="tel" id="attendees" name="attendees" min="1" required oninput="updatePayment()">
-		
-		<button type="button" id="calculate-button">Calculate Amount</button>
-
-    <div class="payment-link" id="payment-section" style="display: none;">
-        <p id="amount" style="text-align: left;">Amount to Pay: </p>
-        <a id="upi-link" href="" target="_blank">
+   
+    <h1>Stargazing Event Registration</h1>
+    <form action="https://sheetdb.io/api/v1/d72qmpwquf0om" method="POST" id="sheetdb-form">
+        <!-- Full Name Field -->
+        <div class="form-group">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        </div>
+        
+        <!-- Phone Number Field -->
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+        </div>
+        
+        <!-- Attendees Field -->
+        <div class="form-group">
+            <label for="attendees">Attendees:</label>
+            <input type="number" id="attendees" name="attendees" placeholder="Number of attendees" min="1" required oninput="updatePayment()">
+        </div>
+        
+        <p id="total-amount" style="text-align: left;">Total Amount: ₹2499</p>
+        <a id="upi-link" href="upi://pay?pa=visualsofsai@okhdfcbank&pn=SolarObservatory&cu=INR&am=2499" target="_blank">
             <button type="button">Pay via UPI</button>
         </a>
-    </div>
+        
+        <!-- Click Submit To Complete Registration -->
+		<p style="text-align: left;"> Click Submit To Complete Registration Process<p>
+            <button type="submit">Submit</button>
+        </form>
+		<div class="itinerary">
+            <h2>Event Itinerary</h2>
+            <img src="itinerary1.jpg" alt="Itinerary Page 1"> <!-- Replace with actual file paths -->
+            <img src="itinerary2.jpg" alt="Itinerary Page 2"> <!-- Replace with actual file paths -->
+            <img src="itinerary3.jpg" alt="Itinerary Page 3"> <!-- Replace with actual file paths -->
+        </div>
+</div>
 	
 
 <script>
@@ -210,20 +219,9 @@
         }
     });	
 	</script>
-	
-		<!-- Click Submit To Complete Registration -->
-		<p style="text-align: left;"> Click Submit To Complete Registration Process<p>
-            <button type="submit">Submit</button>
-        </form>
-		
-    </section>
-        <div class="itinerary">
-            <h2>Event Itinerary</h2>
-            <img src="itinerary1.jpg" alt="Itinerary Page 1"> <!-- Replace with actual file paths -->
-            <img src="itinerary2.jpg" alt="Itinerary Page 2"> <!-- Replace with actual file paths -->
-            <img src="itinerary3.jpg" alt="Itinerary Page 3"> <!-- Replace with actual file paths -->
-        </div>
+
     </div>
+	</section>
 	<!-- Thank You Message -->
     <div id="thank-you-message" class="thank-you-message">
         <h3>Thank You for Registering!</h3>
@@ -232,7 +230,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>For more details, contact us at: <a href="https://wa.me/9585866980?text=I'm%20Enquiring%20about%20the%20Solar%20Observation%20Event">+91 95858 66980</a> | <a href="https://wa.me/7416930597?text=I'm%20Enquiring%20about%20the%20Solar%20Observation%20Event">+91 74169 30597</a> | Email ID: <a href="https://mail.google.com/mail/u/5/#inbox?compose=DmwnWrRmVXFRCXXkKpmdPDLvJmBQsDKqPmsTnqJNcPqxJqRGGbWZmpjsRJzNZqrxjqjbchRhVGgL">dustlitastronomy@gmail.com</a></p>
+        <p>For more details, contact us at: <a href="https://wa.me/9585866980?text=I'm%20Enquiring%20about%20the%20StarGazing%20Event">+91 95858 66980</a> | <a href="https://wa.me/7416930597?text=I'm%20Enquiring%20about%20the%20StarGazing%20Event">+91 74169 30597</a> | Email ID: <a href="https://mail.google.com/mail/u/5/#inbox?compose=DmwnWrRmVXFRCXXkKpmdPDLvJmBQsDKqPmsTnqJNcPqxJqRGGbWZmpjsRJzNZqrxjqjbchRhVGgL">dustlitastronomy@gmail.com</a></p>
         <p>Follow us on <a href="https://www.instagram.com/dustlit?igsh=MTF4ajk0am8yam95Yg==">Instagram</a> </p>
     </footer>
 	
