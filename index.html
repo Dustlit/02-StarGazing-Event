@@ -103,22 +103,23 @@
     </style>
 	    <script>
         function updatePayment() {
-            // Get the number of attendees
-            let attendees = document.getElementById('attendees').value;
-            if (!attendees || attendees < 1) {
-                attendees = 1; // Default to 1 if no valid number is entered
-            }
-            
-            // Calculate total amount (₹2499 per attendee)
-            let amount = attendees * 2499;
-            
-            // Update UPI payment link with the correct amount
-            let upiLink = document.getElementById('upi-link');
-            upiLink.href = `upi://pay?pa=visualsofsai@okhdfcbank&pn=StarGazingEvent&cu=INR`;
-            
-            // Display total amount
-            document.getElementById('total-amount').innerText = `Total Amount: ₹${amount}`;
-        }
+			// Get the number of attendees
+			let attendees = document.getElementById('attendees').value;
+			if (!attendees || attendees < 1) {
+			attendees = 1; // Default to 1 if no valid number is entered
+			}
+    
+			// Calculate total amount (₹2499 per attendee)
+			let amount = attendees * 2499;
+    
+			// Update UPI payment link with the correct amount
+			let upiLink = document.getElementById('upi-link');
+			upiLink.href = `upi://pay?pa=visualsofsai@okhdfcbank&pn=StarGazingEvent&cu=INR&am=${amount}`;
+    
+			// Display total amount
+			document.getElementById('total-amount').innerText = `Total Amount: ₹${amount}`;
+		}
+
 
         // Form submission handler
         document.addEventListener("DOMContentLoaded", function() {
@@ -194,9 +195,11 @@
         
         <p id="total-amount" style="text-align: center;">Total Amount: ₹2499</p>
 		<div class="form-group">
-        <a id="upi-link" href="upi://pay?pa=visualsofsai@okhdfcbank&pn=StarGazingEvent&cu=INR&am=2499" target="_blank">
-            <button type="button">Pay via UPI</button>
-        </a>
+        <a id="upi-link" href="upi://pay?pa=visualsofsai@okhdfcbank&pn=StarGazingEvent&cu=INR&am=2499" 
+   target="_blank" 
+   style="padding: 15px; background-color: #ff6600; color: white; border: none; border-radius: 4px; font-size: 18px; text-decoration: none; display: inline-block;">
+    Pay via UPI
+</a>
 		</div>
         
         <!-- Click Submit To Complete Registration -->
